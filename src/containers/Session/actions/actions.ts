@@ -1,8 +1,12 @@
-import { ISessionState, UPDATE_SESSION, SessionActionTypes } from '../types';
+import {
+  ISessionState,
+  SessionActionTypes,
+  UPDATE_SESSION
+} from '../types';
 
 export const updateSession = (newSession: ISessionState): SessionActionTypes => {
   return {
-    type: UPDATE_SESSION,
-    payload: newSession
+    payload: newSession,
+    type: UPDATE_SESSION
   }
 };

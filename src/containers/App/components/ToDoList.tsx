@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { IToDo } from '../App';
+import { ITodo } from '../types';
 import Todo from './Todo';
 
-const TodoList = ({ todos }: {todos: IToDo[]}) => {
+const TodoList = ({ todos }: {todos: ITodo[]}) => {
   return (
     <div>
       {

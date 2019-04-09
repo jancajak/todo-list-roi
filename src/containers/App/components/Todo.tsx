@@ -5,7 +5,7 @@ interface ITodoStatelessProps {
   description: string
 }
 
-const Todo: React.SFC<ITodoStatelessProps> = ({id, description}) => {
+const Todo: React.FunctionComponent<ITodoStatelessProps> = ({id, description}) => {
   return (
     <div>
       <div>
