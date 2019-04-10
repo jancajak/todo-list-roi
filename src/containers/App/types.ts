@@ -15,11 +15,31 @@ export interface IChangeTodoValue {
   text: string
 }
 
+export interface IChangeTodoUrgency {
+  urgency: number
+}
+
+export interface IChangeIsDone {
+  isDone: boolean
+};
+
+export const CHANGE_URGENCY = 'CHANGE_URGENCY';
+export const IS_DONE = 'IS_DONE';
 export const UPDATE_VALUE = 'UPDATE_VALUE';
 
 export const REQUEST_GET_TODOS = 'REQUEST_GET_TODOS';
 export const REQUEST_ADD_TODO = 'REQUEST_ADD_TODO';
 export const REQUEST_DELETE_TODO = 'REQUEST_DELETE_TODOS';
+
+interface IChangeIsDoneAction {
+  type: typeof IS_DONE,
+  payload: IChangeIsDone
+}
+
+interface IChangeUrgencyAction {
+  type: typeof CHANGE_URGENCY,
+  payload: IChangeTodoUrgency
+}
 
 interface IChangeTodoValueAction {
   type: typeof UPDATE_VALUE,
@@ -33,7 +53,7 @@ interface IGetTodosAction {
 
 interface IAddTodo {
   type: typeof REQUEST_ADD_TODO,
-  payload: IChangeTodoValue
+  payload: ITodoResponse
 }
 
 interface IDeleteTodo {
@@ -43,4 +63,4 @@ interface IDeleteTodo {
   }
 }
 
-export type TodoActionTypes = IChangeTodoValueAction | IGetTodosAction | IAddTodo | IDeleteTodo;
+export type TodoActionTypes = IChangeIsDoneAction | IChangeUrgencyAction | IChangeTodoValueAction | IGetTodosAction | IAddTodo | IDeleteTodo;

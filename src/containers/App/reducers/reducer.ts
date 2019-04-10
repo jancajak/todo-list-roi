@@ -1,5 +1,8 @@
 import {
-  IChangeTodoValue,
+  CHANGE_URGENCY,
+  IChangeIsDone,
+  IChangeTodoUrgency,
+  IChangeTodoValue, IS_DONE,
   ITodoListResponse,
   REQUEST_ADD_TODO,
   REQUEST_DELETE_TODO,
@@ -20,7 +23,7 @@ export const todosReducer = (state=initialState, action: TodoActionTypes): ITodo
       };
     case REQUEST_ADD_TODO:
       return {
-        todos: [...state.todos]
+        todos: [...state.todos, action.payload]
       };
     case REQUEST_DELETE_TODO:
       return {
@@ -39,10 +42,41 @@ export const changeValueTodoReducer = (state=initialStateChangeValue, action: To
   switch(action.type) {
     case UPDATE_VALUE:
       return {
-        ...state,
         text: action.payload.text
       };
     default:
       return state;
   }
 };
+
+const initialStateChangeUrgency: IChangeTodoUrgency = {
+  urgency: 5
+};
+
+export const changeUrgencyTodoReducer = (state=initialStateChangeUrgency, action: TodoActionTypes): IChangeTodoUrgency => {
+  switch (action.type) {
+    case CHANGE_URGENCY:
+      return {
+        urgency: action.payload.urgency
+      };
+    default:
+      return state;
+  }
+};
+
+const initialStateChangeIsDone: IChangeIsDone = {
+  isDone: false
+};
+
+export const changeIsDoneTodoReducer = (state=initialStateChangeIsDone, action: TodoActionTypes): IChangeIsDone => {
+  switch (action.type) {
+    case IS_DONE:
+      return {
+        isDone: action.payload.isDone
+      };
+    default:
+      return state;
+  }
+};
+
+
