@@ -1,46 +1,48 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
-import { ThunkDispatch } from 'redux-thunk'
+import {Action} from 'redux';
+import {ThunkAction, ThunkDispatch} from 'redux-thunk'
 import { AppState } from '../../store/store';
 
 import { updateSession } from '../Session/actions/actions';
-import { ISessionState } from '../Session/types';
+import {ISessionState, SessionActionTypes} from '../Session/types';
 
-import { addTodo, changeValueTodo } from './actions/actions';
+import {addTodo, changeValueTodo} from './actions/actions';
+import { thunkFetchTodos } from './actions/thunkActions';
+
 import TodoList from './components/ToDoList';
-import { IChangeTodoValue, ITodoList } from './types';
+import {IChangeTodoValue, ITodoListResponse, TodoActionTypes} from './types';
 
 interface IAppProps {
   addTodo: typeof addTodo,
   updateSession: typeof updateSession,
   changeValueTodo: typeof changeValueTodo,
   changeValue: IChangeTodoValue,
+  handleFetchTodos: typeof thunkFetchTodos,
   session: ISessionState,
-  todosList: ITodoList
+  todosList: ITodoListResponse
 }
 
 interface IDispatchProps {
-  addTodo: (description:IChangeTodoValue) => void,
-  changeValueTodo: (description: IChangeTodoValue) => void,
-  updateSession: (newSession: ISessionState) => void
+  addTodo: (text:IChangeTodoValue) => TodoActionTypes,
+  changeValueTodo: (text: IChangeTodoValue) => TodoActionTypes,
+  handleFetchTodos: () => ThunkAction<void, AppState, null, Action<string>>,
+  updateSession: (newSession: ISessionState) => SessionActionTypes
 }
 
 export type UpdateTodoParam = React.SyntheticEvent<{ value: string }>;
 
-class App extends React.Component<IAppProps> {
+export class App extends React.Component<IAppProps> {
   public componentDidMount(): void {
-    this.props.updateSession({
-      loggedIn: true,
-      session: "my session"
-    });
+    this.props.handleFetchTodos();
   }
 
   public updateTodo = (event: UpdateTodoParam) => {
-    this.props.changeValueTodo({description: event.currentTarget.value})
+    this.props.changeValueTodo({text: event.currentTarget.value})
   };
 
   public addTodo = () => {
-    this.props.addTodo({description: this.props.changeValue.description});
+    this.props.addTodo({text: this.props.changeValue.text});
   };
 
   public render(): JSX.Element {
@@ -48,7 +50,7 @@ class App extends React.Component<IAppProps> {
       <div className="App">
         <input
           type='text'
-          value={this.props.changeValue.description}
+          value={this.props.changeValue.text}
           onChange={this.updateTodo}
         />
         <TodoList
@@ -62,6 +64,7 @@ class App extends React.Component<IAppProps> {
 
 const mapStateToProps = (state: AppState) => ({
   changeValue: state.changeValue,
+  fetchTodos: state.todosList,
   session: state.session,
   todosList: state.todosList
 });
@@ -69,8 +72,9 @@ const mapStateToProps = (state: AppState) => ({
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>): IDispatchProps => ({
   addTodo: (description) => dispatch(addTodo(description)),
   changeValueTodo: (description) => dispatch(changeValueTodo(description)),
+  handleFetchTodos: () => dispatch(thunkFetchTodos()),
   updateSession: (newSession) => dispatch(updateSession(newSession))
 });
 
 
-export default connect<AppState, IDispatchProps>(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

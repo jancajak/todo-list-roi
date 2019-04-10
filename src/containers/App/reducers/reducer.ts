@@ -1,6 +1,6 @@
 import {
   IChangeTodoValue,
-  ITodoList,
+  ITodoListResponse,
   REQUEST_ADD_TODO,
   REQUEST_DELETE_TODO,
   REQUEST_GET_TODOS,
@@ -8,26 +8,23 @@ import {
   UPDATE_VALUE
 } from '../types';
 
-const initialState: ITodoList = {
-  todos: [{
-    description: "string",
-    id: 1
-  }]
+const initialState: ITodoListResponse = {
+  todos: []
 };
 
-export const todosReducer = (state=initialState, action: TodoActionTypes): ITodoList => {
+export const todosReducer = (state=initialState, action: TodoActionTypes): ITodoListResponse => {
   switch(action.type) {
     case REQUEST_GET_TODOS:
       return {
-        todos: [{id: 1, description: "Maybe typescript"}]
+        todos: action.payload.todos
       };
     case REQUEST_ADD_TODO:
       return {
-        todos: [...state.todos, {id: state.todos.length + 1, description: action.payload.description}]
+        todos: [...state.todos]
       };
     case REQUEST_DELETE_TODO:
       return {
-        todos: state.todos.filter(todo => todo.id !== action.meta.id)
+        todos: [...state.todos]
       };
     default:
       return state;
@@ -35,7 +32,7 @@ export const todosReducer = (state=initialState, action: TodoActionTypes): ITodo
 };
 
 const initialStateChangeValue: IChangeTodoValue = {
-  description: ""
+  text: ""
 };
 
 export const changeValueTodoReducer = (state=initialStateChangeValue, action: TodoActionTypes): IChangeTodoValue => {
@@ -43,7 +40,7 @@ export const changeValueTodoReducer = (state=initialStateChangeValue, action: To
     case UPDATE_VALUE:
       return {
         ...state,
-        description: action.payload.description
+        text: action.payload.text
       };
     default:
       return state;

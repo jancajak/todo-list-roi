@@ -1,6 +1,6 @@
 import {
   IChangeTodoValue,
-  ITodoList,
+  ITodoListResponse,
   REQUEST_ADD_TODO,
   REQUEST_DELETE_TODO,
   REQUEST_GET_TODOS,
@@ -8,23 +8,23 @@ import {
   UPDATE_VALUE
 } from '../types';
 
-export const changeValueTodo = (description: IChangeTodoValue): TodoActionTypes => {
+export const changeValueTodo = (text: IChangeTodoValue): TodoActionTypes => {
   return {
-    payload: description,
+    payload: text,
     type: UPDATE_VALUE
   };
 };
 
-export const fetchTodos = (todos: ITodoList): TodoActionTypes => {
+export const fetchTodos = (todos: ITodoListResponse) => {
   return {
     payload: todos,
     type: REQUEST_GET_TODOS
   }
 };
 
-export const addTodo = (description: IChangeTodoValue): TodoActionTypes => {
+export const addTodo = (text: IChangeTodoValue): TodoActionTypes => {
   return {
-    payload: description,
+    payload: text,
     type: REQUEST_ADD_TODO
   };
 };

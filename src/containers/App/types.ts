@@ -1,14 +1,18 @@
-export interface ITodo{
-  id: number,
-  description: string
+export interface ITodoResponse {
+  id?: string,
+  text?: string,
+  created?: string,
+  updated?: string,
+  isCompleted?: boolean,
+  urgency?: number
 }
 
-export interface ITodoList {
-  todos: ITodo[]
+export interface ITodoListResponse {
+  todos: ITodoResponse[]
 }
 
 export interface IChangeTodoValue {
-  description: string
+  text: string
 }
 
 export const UPDATE_VALUE = 'UPDATE_VALUE';
@@ -24,7 +28,7 @@ interface IChangeTodoValueAction {
 
 interface IGetTodosAction {
   type: typeof REQUEST_GET_TODOS,
-  payload: ITodoList
+  payload: ITodoListResponse
 }
 
 interface IAddTodo {

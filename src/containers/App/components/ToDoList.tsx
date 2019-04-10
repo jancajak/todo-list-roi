@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { ITodo } from '../types';
+import { ITodoResponse } from '../types';
 import Todo from './Todo';
 
-const TodoList = ({ todos }: {todos: ITodo[]}) => {
+const TodoList = ({ todos }: {todos: ITodoResponse[]}) => {
   return (
     <div>
       {
@@ -11,7 +11,7 @@ const TodoList = ({ todos }: {todos: ITodo[]}) => {
             <Todo
               key={i}
               id={todo.id}
-              description={todo.description}
+              text={todo.text}
             />
           );
         })

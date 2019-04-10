@@ -1,4 +1,5 @@
 import { applyMiddleware, combineReducers, createStore } from "redux";
+import logger from 'redux-logger';
 import thunkMiddleware from "redux-thunk";
 
 import { changeValueTodoReducer, todosReducer } from "../containers/App/reducers/reducer";
@@ -6,6 +7,7 @@ import { sessionReducer } from "../containers/Session/reducers/reducer";
 
 const rootReducer = combineReducers({
   changeValue: changeValueTodoReducer,
+  fetchTodos: todosReducer,
   session: sessionReducer,
   todosList: todosReducer,
 });
@@ -13,7 +15,7 @@ const rootReducer = combineReducers({
 export type AppState = ReturnType<typeof rootReducer>;
 
 export default function configureStore() {
-  const middlewares = [thunkMiddleware];
+  const middlewares = [thunkMiddleware, logger];
   const middleWareEnhancer = applyMiddleware(...middlewares);
 
   const store = createStore(

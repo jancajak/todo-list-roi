@@ -1,18 +1,18 @@
 import * as React from 'react';
 
 interface ITodoStatelessProps {
-  id: number,
-  description: string
+  id?: string,
+  text?: string
 }
 
-const Todo: React.FunctionComponent<ITodoStatelessProps> = ({id, description}) => {
+const Todo: React.FunctionComponent<ITodoStatelessProps> = ({id, text}) => {
   return (
     <div>
       <div>
         {id}
       </div>
       <div>
-        {description}
+        {text}
       </div>
     </div>
   );
