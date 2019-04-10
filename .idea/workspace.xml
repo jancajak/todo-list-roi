@@ -1,18 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b57d8c59-f333-40d1-a21d-ad0fb3dc8900" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/App/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/App.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/App/actions/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/actions/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/App/components/ToDoList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/components/ToDoList.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/App/components/Todo.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/components/Todo.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/App/reducers/reducer.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/reducers/reducer.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/App/types.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/App/types.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/containers/Session/actions/actions.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/containers/Session/actions/actions.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/index.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.tsx" afterDir="false" />
-    </list>
+    <list default="true" id="b57d8c59-f333-40d1-a21d-ad0fb3dc8900" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -24,11 +13,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/containers/App/App.tsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="591">
-              <caret line="62" column="40" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="40" />
+            <state relative-caret-position="1824">
+              <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -36,10 +25,10 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/store/store.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
+            <state relative-caret-position="192">
               <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
             </state>
           </provider>
@@ -216,16 +205,15 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1554850000130</updated>
-      <workItem from="1554850001802" duration="2231000" />
+      <workItem from="1554850001802" duration="2911000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2231000" />
+    <option name="totallyTimeSpent" value="2911000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1376" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="npm" side_tool="true" />
       <window_info id="DB Browser" />
@@ -301,20 +289,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/containers/App/App.tsx">
+    <entry file="file://$PROJECT_DIR$/src/store/store.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="591">
-          <caret line="62" column="40" selection-start-line="62" selection-start-column="32" selection-end-line="62" selection-end-column="40" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="192">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/store/store.ts">
+    <entry file="file://$PROJECT_DIR$/src/containers/App/App.tsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="12" column="22" lean-forward="true" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="22" />
+        <state relative-caret-position="1824">
+          <caret line="76" lean-forward="true" selection-start-line="76" selection-end-line="76" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
