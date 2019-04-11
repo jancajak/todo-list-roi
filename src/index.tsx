@@ -18,7 +18,7 @@ const store = configureStore();
 ReactDOM.render(
       <Provider store={store}>
           <ToastContainer
-              autoClose={8000}
+              autoClose={3000}
               draggable={false}
               position='top-right'
           />

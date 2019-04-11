@@ -25,7 +25,6 @@ import {
   IUpdatedTodo, IUpdatedTodoIsDone, IUpdatedTodoSelect, IUpdatedTodoValue,
   TodoActionTypes
 } from './types';
-import Timeout = NodeJS.Timeout;
 
 interface IAppProps {
   addTodo: typeof thunkAddTodos,
@@ -76,10 +75,15 @@ interface IDispatchProps {
 export type UpdateTodoParam = React.SyntheticEvent<{ value: string }>;
 
 export class App extends React.Component<IAppProps> {
-  private timeout: Timeout;
+  private timeout: NodeJS.Timeout;
+
+  constructor(props: IAppProps) {
+    super(props);
+    this.timeout = setTimeout(props.deleteSession, (24 * props.session.errorRate) * 1000);
+  }
+
   public componentDidMount(): void {
     this.props.handleFetchTodos();
-    this.timer();
   }
 
   public timer = (): void => {
