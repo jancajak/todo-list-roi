@@ -5,18 +5,19 @@ import {
     Route, RouteComponentProps,
     RouteProps,
 } from 'react-router-dom';
+import {IResponseSession} from './containers/Session/types';
 import {AppState} from './store/store';
 
 interface IPrivateRouteProps extends RouteProps {
     component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>,
-    isSigned: boolean;
+    session: IResponseSession;
 }
 
 const PrivateRoute: React.FunctionComponent<IPrivateRouteProps> = (props) => {
-    const { component: Component, isSigned, ...rest } = props;
+    const { component: Component, session, ...rest } = props;
 
     const renderFunction = (routeProps: any) =>
-        isSigned ? (
+        session.sessionId ? (
             <Component {...routeProps} />
         ) : (
             <Redirect
@@ -36,7 +37,7 @@ const PrivateRoute: React.FunctionComponent<IPrivateRouteProps> = (props) => {
 };
 
 const mapStateToProps = (state: AppState) => ({
-   isSigned: state.session.isSigned
+   session: state.session
 });
 
 export default connect(mapStateToProps)(PrivateRoute);

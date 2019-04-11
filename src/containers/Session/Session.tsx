@@ -1,36 +1,34 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {ThunkDispatch} from 'redux-thunk';
+import {Action} from 'redux';
+import {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {AppState} from '../../store/store';
-import {updateSession} from './actions/actions';
 import {thunkGetSession} from './actions/thunkActions';
-import {ISessionState} from './types';
+import {IResponseSession} from './types';
 
 interface ISessionProps {
-    session: ISessionState,
+    session: IResponseSession,
     handleGetSession: typeof thunkGetSession,
-    updateSession: typeof updateSession
 }
 
 interface IDispatchProps {
-    handleGetSession: () => void,
-    updateSession: (newSession: ISessionState) => void
+    handleGetSession: () => ThunkAction<void, AppState, null, Action<string>>
 }
 
 class Session extends React.Component<ISessionProps> {
-    public componentDidMount(): void {
-        this.props.updateSession({isSigned: true, session: 'Jakub'});
-    }
-
     public getSession = (): void => {
         this.props.handleGetSession();
     };
 
     public render(): JSX.Element {
         return (
-          <div>
-              <h1>Click button to login</h1>
-              <button onClick={this.getSession}>Login</button>
+          <div className='tc'>
+              <h1 className='f1 fw2 tc w-100 lh-title dib'>Click button to login</h1>
+              <div
+                  className='pa2 f3 tc mt4 dib w-10 white grow pointer bg-green br4 shadow-5'
+                  onClick={this.getSession}>
+                  Login
+              </div>
           </div>
         );
     }
@@ -41,8 +39,7 @@ const mapStateToProps = (state: AppState) => ({
 });
 
 const mapDispatchToProps = (dispatch: ThunkDispatch<{}, {}, any>): IDispatchProps => ({
-    handleGetSession: () => dispatch(thunkGetSession()),
-    updateSession: (newSession) => dispatch(updateSession(newSession))
+    handleGetSession: () => dispatch(thunkGetSession())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Session);

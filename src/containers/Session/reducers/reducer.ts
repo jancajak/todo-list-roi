@@ -1,28 +1,83 @@
+import {toast} from 'react-toastify';
 import {
-  GET_SESSION,
-  ISessionState,
-  SessionActionTypes,
-  UPDATE_SESSION
+  IRequestState,
+  IResponseSession, REQUEST_DELETE_SESSION_FAIL, REQUEST_DELETE_SESSION_PENDING, REQUEST_DELETE_SESSION_SUCCESS,
+  REQUEST_GET_SESSION_FAIL,
+  REQUEST_GET_SESSION_PENDING,
+  REQUEST_GET_SESSION_SUCCESS,
+  REQUEST_UPDATE_SESSION_FAIL,
+  REQUEST_UPDATE_SESSION_PENDING,
+  REQUEST_UPDATE_SESSION_SUCCESS,
+  SessionActionTypes
 } from '../types';
 
-const initialState: ISessionState = {
-  isSigned: false,
-  session: '',
+type SessionType = IResponseSession & IRequestState;
+
+const initialState: SessionType = {
+  errorRate: 50,
+  errorsDelete: [],
+  errorsFetch: [],
+  errorsUpdate: [],
+  isPendingDelete: false,
+  isPendingFetch: false,
+  isPendingUpdate: false,
+  sessionId: '',
+  status: ''
 };
 
-export const sessionReducer = (state=initialState, action: SessionActionTypes): ISessionState => {
+export const sessionReducer = (state=initialState, action: SessionActionTypes): SessionType => {
   switch(action.type) {
-    case GET_SESSION:
+    case REQUEST_GET_SESSION_PENDING:
+      return {
+        ...state,
+        isPendingFetch: true
+      };
+    case REQUEST_GET_SESSION_SUCCESS:
       sessionStorage.setItem('sessionId', action.payload.sessionId);
       return {
         ...state,
-        isSigned: true,
-        session: action.payload.sessionId
+        isPendingFetch: false,
+        sessionId: action.payload.sessionId
       };
-    case UPDATE_SESSION:
+    case REQUEST_GET_SESSION_FAIL:
+      toast.error(action.payload);
       return {
         ...state,
-        ...action.payload
+        errorsFetch: [...state.errorsFetch, action.payload],
+        isPendingFetch: false
+      };
+    case REQUEST_UPDATE_SESSION_PENDING:
+      return {
+        ...state,
+        isPendingUpdate: true
+      };
+    case REQUEST_UPDATE_SESSION_SUCCESS:
+      return {
+        ...state,
+        errorRate: action.payload,
+        isPendingUpdate: false
+      };
+    case REQUEST_UPDATE_SESSION_FAIL:
+      alert(action.payload);
+      return {
+        ...state,
+        errorsUpdate: [...state.errorsUpdate, action.payload],
+        isPendingUpdate: false
+      };
+    case REQUEST_DELETE_SESSION_PENDING:
+      return {
+        ...state,
+        isPendingDelete: true
+      };
+    case REQUEST_DELETE_SESSION_SUCCESS:
+      return {
+        ...state,
+        sessionId: ''
+      };
+    case REQUEST_DELETE_SESSION_FAIL:
+      return {
+        ...state,
+        isPendingDelete: false
       };
     default:
       return state;

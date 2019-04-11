@@ -1,21 +1,68 @@
 import {
-  GET_SESSION,
-  IResponseSession,
-  ISessionState,
+  IResponseSession, REQUEST_DELETE_SESSION_FAIL, REQUEST_DELETE_SESSION_PENDING, REQUEST_DELETE_SESSION_SUCCESS,
+  REQUEST_GET_SESSION_FAIL,
+  REQUEST_GET_SESSION_PENDING,
+  REQUEST_GET_SESSION_SUCCESS,
+  REQUEST_UPDATE_SESSION_FAIL,
+  REQUEST_UPDATE_SESSION_PENDING,
+  REQUEST_UPDATE_SESSION_SUCCESS,
   SessionActionTypes,
-  UPDATE_SESSION
 } from '../types';
 
-export const updateSession = (newSession: ISessionState): SessionActionTypes => {
+export const deleteSessionPending = (): SessionActionTypes => {
   return {
-    payload: newSession,
-    type: UPDATE_SESSION
+    type: REQUEST_DELETE_SESSION_PENDING
+  };
+};
+
+export const deleteSession = (): SessionActionTypes => {
+  return {
+    type: REQUEST_DELETE_SESSION_SUCCESS
+  };
+};
+
+export const deleteSessionFail = (): SessionActionTypes => {
+  return {
+    type: REQUEST_DELETE_SESSION_FAIL
+  };
+};
+
+export const updateSessionPending = (): SessionActionTypes => {
+  return {
+    type: REQUEST_UPDATE_SESSION_PENDING
+  };
+};
+
+export const updateSession = (rate: number): SessionActionTypes => {
+  return {
+    payload: rate,
+    type: REQUEST_UPDATE_SESSION_SUCCESS
   }
+};
+
+export const updateSessionFail = (error: string): SessionActionTypes => {
+  return {
+    payload: error,
+    type: REQUEST_UPDATE_SESSION_FAIL
+  };
+};
+
+export const getSessionPending = (): SessionActionTypes => {
+  return {
+    type: REQUEST_GET_SESSION_PENDING
+  };
 };
 
 export const getSession = (session: IResponseSession): SessionActionTypes => {
   return {
     payload: session,
-    type: GET_SESSION
+    type: REQUEST_GET_SESSION_SUCCESS
+  };
+};
+
+export const getSessionFail = (error: string): SessionActionTypes => {
+  return {
+    payload: error,
+    type: REQUEST_GET_SESSION_FAIL
   };
 };

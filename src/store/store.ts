@@ -6,12 +6,20 @@ import {
   changeIsDoneTodoReducer,
   changeUrgencyTodoReducer,
   changeValueTodoReducer,
+  handleChangeUpdatedTodoIsDone,
+  handleChangeUpdatedTodoUrgency,
+  handleChangeUpdatedTodoValue,
+  isUpdatedTodoReducer,
   todosReducer
 } from '../containers/App/reducers/reducer';
 import { sessionReducer } from "../containers/Session/reducers/reducer";
 
 const rootReducer = combineReducers({
   changeIsDone: changeIsDoneTodoReducer,
+  changeIsUpdated: isUpdatedTodoReducer,
+  changeUpdatedTodoIsDone: handleChangeUpdatedTodoIsDone,
+  changeUpdatedTodoUrgency: handleChangeUpdatedTodoUrgency,
+  changeUpdatedTodoValue: handleChangeUpdatedTodoValue,
   changeUrgency: changeUrgencyTodoReducer,
   changeValue: changeValueTodoReducer,
   fetchTodos: todosReducer,
