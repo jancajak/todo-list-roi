@@ -23,7 +23,7 @@ interface ITodoStatelessProps {
   changedIsDone: boolean,
   changedValue: string,
   changedUrgency: number,
-  changeIsDoneIsUpdated: () => void,
+  changeIsDoneIsUpdated: (id: string, defaultValue: string, defaultUrgency: number, defaultIsDone: boolean) => void,
   changeValueIsUpdated: (event: UpdateTodoParam) => void,
   changeUrgencyIsUpdated: (event: UpdateTodoParam) => void
 }
@@ -32,11 +32,9 @@ const Todo: React.FunctionComponent<ITodoStatelessProps> = ({
   alterTodo,
   deleteTodo,
   handleIsUpdatedChange,
-  index,
   id,
   text,
   isUpdated,
-  changedIsDone,
   changeIsDoneIsUpdated,
   changedValue,
   changeValueIsUpdated,
@@ -55,6 +53,10 @@ const Todo: React.FunctionComponent<ITodoStatelessProps> = ({
 
   const handleClickDelete = (): void => {
     deleteTodo(id || '');
+  };
+
+  const handleClickDone = (event: React.SyntheticEvent<HTMLInputElement>): void => {
+    changeIsDoneIsUpdated(event.currentTarget.name || '', text || '', urgency || 5, isDone || false);
   };
 
   const handleKeyPressInput = (event: React.KeyboardEvent<HTMLInputElement>): void => {
@@ -93,22 +95,23 @@ const Todo: React.FunctionComponent<ITodoStatelessProps> = ({
                       <option value={2}>2</option>
                       <option value={1}>1</option>
                     </select>
-                    <label htmlFor='isDoneTodo' className='mr2'>
-                      <span>Done</span>
-                      <img alt='checkboxTodo' src={changedIsDone ? checkedIMG : unCheckedIMG} width='40' height='40' className='ml2 pointer v-mid' />
-                    </label>
-                    <input
-                        id='isDoneTodo'
-                        type='checkbox'
-                        className='dn'
-                        checked={changedIsDone}
-                        onChange={changeIsDoneIsUpdated}
-                    />
                   </div>
                 </div>
                 :
                 <div className='flex justify-between fc'>
-                  <p className='mr1 pl4'>{index + 1}.</p>
+                  <p className='mr1 pl4'>
+                    <label htmlFor={`isDoneTodo${id}`} className='mr2'>
+                      <img alt='checkboxTodo' src={isDone ? checkedIMG : unCheckedIMG} width='40' height='40' className='ml2 pointer v-mid' />
+                    </label>
+                    <input
+                        id={`isDoneTodo${id}`}
+                        type='checkbox'
+                        name={id}
+                        className='dn'
+                        checked={isDone}
+                        onChange={handleClickDone}
+                    />
+                  </p>
                   <p id={id} onClick={handleClick} className={`${isDone ? 'strike' : ''} fc`}>{text}</p>
                   <p className='child pointer fc pr5 red remove' onClick={handleClickDelete}/>
                 </div>

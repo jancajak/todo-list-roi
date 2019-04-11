@@ -30,7 +30,7 @@ const TodoList = (
       isUpdated: string,
       todos: ITodoResponse[],
       changedIsDone: boolean,
-      changeIsDoneIsUpdated: () => void,
+      changeIsDoneIsUpdated: (id: string, defaultValue: string, defaultUrgency: number, defaultIsDone: boolean) => void,
       changedValue: string,
       changeValueIsUpdated: (event: UpdateTodoParam) => void,
       changedUrgency: number,

@@ -103,11 +103,11 @@ export class App extends React.Component<IAppProps> {
   };
 
   public updateTodo = (event: UpdateTodoParam): void => {
-    this.props.changeValueTodo({text: event.currentTarget.value})
+    this.props.changeValueTodo({text: event.currentTarget.value});
   };
 
   public changeUrgency = (event: UpdateTodoParam): void => {
-    this.props.changeUrgencyTodo({urgency: Number(event.currentTarget.value)})
+    this.props.changeUrgencyTodo({urgency: Number(event.currentTarget.value)});
   };
 
   public changeIsDone = (): void => {
@@ -122,8 +122,16 @@ export class App extends React.Component<IAppProps> {
     this.props.handleChangeUpdatedTodoUrgency({urgency: Number(event.currentTarget.value)});
   };
 
-  public changeIsDoneIsUpdated = (): void => {
-    this.props.handleChangeUpdatedTodoIsDone({isDone: !this.props.changeUpdatedTodoIsDone.isDone});
+  public changeIsDoneIsUpdated = (
+      id: string,
+      defaultValue: string,
+      defaultUrgency: number,
+      defaultIsDone: boolean
+  ): void => {
+    const {
+      alterTodo
+    } = this.props;
+    alterTodo(id, defaultValue, defaultUrgency, !defaultIsDone);
   };
 
   public handleIsUpdated = (
@@ -147,6 +155,7 @@ export class App extends React.Component<IAppProps> {
   public addTodo = (): void => {
     const { changeValue, changeUrgency, changeIsDone } = this.props;
     this.props.addTodo(changeValue.text, changeUrgency.urgency, changeIsDone.isDone);
+    this.props.changeValueTodo({text: ''});
     this.props.updateSession(this.resetTimer);
   };
 
