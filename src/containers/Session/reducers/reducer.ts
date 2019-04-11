@@ -58,7 +58,6 @@ export const sessionReducer = (state=initialState, action: SessionActionTypes): 
         isPendingUpdate: false
       };
     case REQUEST_UPDATE_SESSION_FAIL:
-      alert(action.payload);
       return {
         ...state,
         errorsUpdate: [...state.errorsUpdate, action.payload],

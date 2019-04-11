@@ -1,5 +1,6 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
+import {Redirect} from 'react-router';
 import {Action} from 'redux';
 import {ThunkAction, ThunkDispatch} from 'redux-thunk';
 import {AppState} from '../../store/store';
@@ -21,8 +22,13 @@ class Session extends React.Component<ISessionProps> {
     };
 
     public render(): JSX.Element {
+        const { session } = this.props;
         return (
           <div className='tc'>
+              {
+                  session.sessionId &&
+                      <Redirect to='/app'/>
+              }
               <h1 className='f1 fw2 tc w-100 lh-title dib'>Click button to login</h1>
               <div
                   className='pa2 f3 tc mt4 dib w-10 white grow pointer bg-green br4 shadow-5'

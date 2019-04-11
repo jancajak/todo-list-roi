@@ -50,7 +50,7 @@ export const todosReducer = (state=initialState, action: TodoActionTypes): State
     case REQUEST_ALTER_TODO_SUCCESS:
       const newTodos = [...state.todos];
       const index = newTodos.findIndex(el => el.id === action.payload.id);
-      newTodos[index] = action.payload;
+      newTodos.push[index] = action.payload;
       return {
         ...state,
         isPendingAlter: false,

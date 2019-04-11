@@ -1,6 +1,5 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
-import history from '../../../history';
 import { AppState } from "../../../store/store";
 import {deleteSessionAPI, fetchSessionAPI, updateSessionAPI} from '../api/api';
 import {
@@ -16,11 +15,10 @@ import {
 
 export const thunkGetSession = (): ThunkAction<void, AppState, null, Action<string>> => async dispatch => {
     try {
-        dispatch(getSessionPending())
+        dispatch(getSessionPending());
         const getSessionRes = await fetchSessionAPI();
         if (getSessionRes.status === 'OK') {
             dispatch(getSession(getSessionRes));
-            history.push('/app');
         } else {
             dispatch(getSessionFail(getSessionRes.error));
         }

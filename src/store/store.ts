@@ -22,7 +22,6 @@ const rootReducer = combineReducers({
   changeUpdatedTodoValue: handleChangeUpdatedTodoValue,
   changeUrgency: changeUrgencyTodoReducer,
   changeValue: changeValueTodoReducer,
-  fetchTodos: todosReducer,
   session: sessionReducer,
   todosList: todosReducer,
 });

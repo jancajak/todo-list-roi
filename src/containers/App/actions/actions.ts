@@ -5,7 +5,7 @@ import {
   HANDLE_CHANGE_UPDATED_TODO_VALUE,
   IChangeIsDone,
   IChangeTodoUrgency,
-  IChangeTodoValue,
+  IChangeTodoValue, IRequestDeleteTodoActionFail,
   IS_DONE,
   IS_UPDATED,
   ITodoListResponse,
@@ -149,7 +149,7 @@ export const deleteTodo = (todos: ITodoListResponse): TodoActionTypes => {
   };
 };
 
-export const deleteTodoFail = (error: string): TodoActionTypes => {
+export const deleteTodoFail = (error: string): IRequestDeleteTodoActionFail => {
   return {
     payload: error,
     type: REQUEST_DELETE_TODO_FAIL
