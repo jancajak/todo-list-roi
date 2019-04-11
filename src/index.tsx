@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Route, Router } from 'react-router-dom';
 import {ToastContainer} from 'react-toastify';
+import { Flip } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import 'tachyons';
 import App from './containers/App/App';
@@ -19,6 +20,7 @@ ReactDOM.render(
       <Provider store={store}>
           <ToastContainer
               autoClose={3000}
+              transition={Flip}
               draggable={false}
               position='top-right'
           />

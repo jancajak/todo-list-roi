@@ -69,6 +69,7 @@ export const sessionReducer = (state=initialState, action: SessionActionTypes): 
         isPendingDelete: true
       };
     case REQUEST_DELETE_SESSION_SUCCESS:
+      toast.info('You have been logged out due to inactivity', { autoClose: false });
       return {
         ...state,
         sessionId: ''
