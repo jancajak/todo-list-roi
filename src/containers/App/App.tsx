@@ -22,9 +22,15 @@ import {
   IChangeTodoUrgency,
   IChangeTodoValue,
   ITodoListResponse,
-  IUpdatedTodo, IUpdatedTodoIsDone, IUpdatedTodoSelect, IUpdatedTodoValue,
-  TodoActionTypes
-} from './types';
+  IUpdatedTodo,
+  IUpdatedTodoIsDone,
+  IUpdatedTodoSelect,
+  IUpdatedTodoValue,
+} from './types/types';
+import { TodoActionTypes } from './types/actionTypes';
+
+import checkedIMG from '../../images/checked.png';
+import unCheckedIMG from '../../images/unChecked.png';
 
 interface IAppProps {
   addTodo: typeof thunkAddTodos,
@@ -125,20 +131,26 @@ export class App extends React.Component<IAppProps> {
       defaultValue: string,
       defaultUrgency: number,
       defaultIsDone: boolean
-  ) => {
+  ): void => {
     this.props.handleIsUpdatedChange({isUpdated: event.currentTarget.id});
     this.props.handleChangeUpdatedTodoValue({value: defaultValue});
     this.props.handleChangeUpdatedTodoUrgency({urgency: defaultUrgency});
     this.props.handleChangeUpdatedTodoIsDone({isDone: defaultIsDone});
   };
 
-  public addTodo = () => {
+  public handleKeyPressInput = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if(event.key === 'Enter') {
+      this.addTodo();
+    }
+  };
+
+  public addTodo = (): void => {
     const { changeValue, changeUrgency, changeIsDone } = this.props;
     this.props.addTodo(changeValue.text, changeUrgency.urgency, changeIsDone.isDone);
     this.props.updateSession(this.resetTimer);
   };
 
-  public alterTodo = (id: string) => {
+  public alterTodo = (id: string): void => {
     const {
       alterTodo,
       changeUpdatedTodoIsDone,
@@ -150,7 +162,7 @@ export class App extends React.Component<IAppProps> {
     alterTodo(id, changeUpdatedTodoValue.value, changeUpdatedTodoUrgency.urgency, changeUpdatedTodoIsDone.isDone);
   };
 
-  public deleteTodo = (id: string) => {
+  public deleteTodo = (id: string): void => {
     const { deleteTodo } = this.props;
     deleteTodo(id);
   };
@@ -176,6 +188,7 @@ export class App extends React.Component<IAppProps> {
                 value={changeValue.text}
                 placeholder='Name of todo'
                 onChange={this.updateTodo}
+                onKeyPress={this.handleKeyPressInput}
             />
             <button
                 disabled={!changeValue.text}
@@ -200,10 +213,14 @@ export class App extends React.Component<IAppProps> {
               <option value={2}>2</option>
               <option value={1}>1</option>
             </select>
-            <label htmlFor='isDone' className='mr2'>Already done</label>
+            <label htmlFor='isDone'>
+              <span>Already done</span>
+              <img alt='checkbox' src={changeIsDone.isDone ? checkedIMG : unCheckedIMG} width='40' height='40' className='ml2 pointer v-mid' />
+            </label>
             <input
                 id='isDone'
                 type='checkbox'
+                className='dn'
                 checked={changeIsDone.isDone}
                 onChange={this.changeIsDone}
             />

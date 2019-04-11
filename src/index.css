@@ -3,3 +3,8 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+html {
+  min-height: 100vh;
+  background-image: linear-gradient(to right top, #cdeb3d, #ceea4e, #cfea5c, #d0e96a, #d1e876, #c6eb83, #bded8f, #b4ef9c, #9df4b0, #86f7c5, #71fadb, #5ffbf1);
+}

@@ -3,15 +3,19 @@ import logger from 'redux-logger';
 import thunkMiddleware from "redux-thunk";
 
 import {
+  todosReducer
+} from '../containers/App/reducers/reducer';
+import {
   changeIsDoneTodoReducer,
   changeUrgencyTodoReducer,
   changeValueTodoReducer,
+} from '../containers/App/reducers/changeAddTodoReducer';
+import {
   handleChangeUpdatedTodoIsDone,
   handleChangeUpdatedTodoUrgency,
   handleChangeUpdatedTodoValue,
   isUpdatedTodoReducer,
-  todosReducer
-} from '../containers/App/reducers/reducer';
+} from '../containers/App/reducers/isUpdatedReducer';
 import { sessionReducer } from "../containers/Session/reducers/reducer";
 
 const rootReducer = combineReducers({

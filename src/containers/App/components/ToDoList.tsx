@@ -1,6 +1,6 @@
 import * as React from 'react';
 import {UpdateTodoParam} from '../App';
-import { ITodoResponse } from '../types';
+import { ITodoResponse } from '../types/types';
 import Todo from './Todo';
 
 const TodoList = (

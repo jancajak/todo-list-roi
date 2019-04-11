@@ -1,5 +1,9 @@
 import * as React from 'react';
 import {UpdateTodoParam} from '../App';
+import checkedIMG from '../../../images/checked.png';
+import unCheckedIMG from '../../../images/unChecked.png';
+
+import './Todo.css';
 
 interface ITodoStatelessProps {
   id?: string,
@@ -53,8 +57,14 @@ const Todo: React.FunctionComponent<ITodoStatelessProps> = ({
     deleteTodo(id || '');
   };
 
+  const handleKeyPressInput = (event: React.KeyboardEvent<HTMLInputElement>): void => {
+    if(event.key === 'Enter'){
+      handleClickAlter();
+    }
+  };
+
   return (
-    <div className='center f2 tc fc w-50 pv1 mt4 bg-light-green br4 shadow-5 hide-child'>
+    <div className='center f2 tc fc w-50 mt4 bg-light-green br4 shadow-5 hide-child'>
         {
             isUpdated ?
                 <div>
@@ -63,9 +73,10 @@ const Todo: React.FunctionComponent<ITodoStatelessProps> = ({
                       className='f3 mr2 br4 pa2'
                       value={changedValue}
                       onChange={changeValueIsUpdated}
+                      onKeyPress={handleKeyPressInput}
                   />
                   <div
-                      className='pa2 f3 tc mt4 dib w-10 white grow pointer bg-green br4 shadow-5'
+                      className='pa3 f3 tc mt4 dib white grow pointer bg-green br4 shadow-5'
                       onClick={handleClickAlter}>
                     Save
                   </div>
@@ -82,10 +93,14 @@ const Todo: React.FunctionComponent<ITodoStatelessProps> = ({
                       <option value={2}>2</option>
                       <option value={1}>1</option>
                     </select>
-                    <label htmlFor='isDone' className='mr2'>Done</label>
+                    <label htmlFor='isDoneTodo' className='mr2'>
+                      <span>Done</span>
+                      <img alt='checkboxTodo' src={changedIsDone ? checkedIMG : unCheckedIMG} width='40' height='40' className='ml2 pointer v-mid' />
+                    </label>
                     <input
-                        id='isDone'
+                        id='isDoneTodo'
                         type='checkbox'
+                        className='dn'
                         checked={changedIsDone}
                         onChange={changeIsDoneIsUpdated}
                     />
@@ -95,9 +110,7 @@ const Todo: React.FunctionComponent<ITodoStatelessProps> = ({
                 <div className='flex justify-between fc'>
                   <p className='mr1 pl4'>{index + 1}.</p>
                   <p id={id} onClick={handleClick} className={`${isDone ? 'strike' : ''} fc`}>{text}</p>
-                  <p className='child pointer fc pr4 red' onClick={handleClickDelete}>
-                    X
-                  </p>
+                  <p className='child pointer fc pr5 red remove' onClick={handleClickDelete}/>
                 </div>
 
         }

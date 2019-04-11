@@ -1,54 +1,12 @@
-export interface ITodoResponse {
-  id?: string,
-  text?: string,
-  created?: string,
-  updated?: string,
-  isCompleted?: boolean,
-  urgency?: number
-}
-
-export interface ITodoListResponse {
-  todos: ITodoResponse[]
-}
-
-export interface IChangeTodoValue {
-  text: string
-}
-
-export interface IChangeTodoUrgency {
-  urgency: number
-}
-
-export interface IChangeIsDone {
-  isDone: boolean
-}
-
-export interface IUpdatedTodo {
-  isUpdated: string
-}
-
-export interface IUpdatedTodoValue {
-  value: string
-}
-
-export interface IUpdatedTodoSelect {
-  urgency: number
-}
-
-export interface IUpdatedTodoIsDone {
- isDone: boolean
-}
-
-export interface IRequestTodo {
-  isPendingFetch: boolean,
-  errorsFetch: string[],
-  isPendingAdd: boolean,
-  errorsAdd: string[],
-  isPendingAlter: boolean,
-  errorsAlter: string[],
-  isPendingDelete: boolean,
-  errorsDelete: string[]
-}
+import {
+    IChangeIsDone, IChangeTodoUrgency, IChangeTodoValue,
+    ITodoListResponse,
+    ITodoResponse,
+    IUpdatedTodo,
+    IUpdatedTodoIsDone,
+    IUpdatedTodoSelect,
+    IUpdatedTodoValue
+} from './types';
 
 export const CHANGE_URGENCY = 'CHANGE_URGENCY';
 export const IS_DONE = 'IS_DONE';
@@ -75,94 +33,94 @@ export const REQUEST_DELETE_TODO_SUCCESS = 'REQUEST_DELETE_TODO_SUCCESS';
 export const REQUEST_DELETE_TODO_FAIL = 'REQUEST_DELETE_TODO_FAIL';
 
 export interface IRequestDeleteTodoActionPending {
-  type: typeof REQUEST_DELETE_TODO_PENDING
+    type: typeof REQUEST_DELETE_TODO_PENDING
 }
 
 export interface IRequestDeleteTodoActionSuccess {
-  type: typeof REQUEST_DELETE_TODO_SUCCESS,
-  payload: ITodoListResponse
+    type: typeof REQUEST_DELETE_TODO_SUCCESS,
+    payload: ITodoListResponse
 }
 
 export interface IRequestDeleteTodoActionFail {
-  type: typeof REQUEST_DELETE_TODO_FAIL,
-  payload: string
+    type: typeof REQUEST_DELETE_TODO_FAIL,
+    payload: string
 }
 
 export interface IRequestAlterTodoActionPending {
-  type: typeof REQUEST_ALTER_TODO_PENDING
+    type: typeof REQUEST_ALTER_TODO_PENDING
 }
 
 export interface IRequestAlterTodoActionSuccess {
-  type: typeof REQUEST_ALTER_TODO_SUCCESS,
-  payload: ITodoResponse
+    type: typeof REQUEST_ALTER_TODO_SUCCESS,
+    payload: ITodoResponse
 }
 
 export interface IRequestAlterTodoActionFail {
-  type: typeof REQUEST_ALTER_TODO_FAIL,
-  payload: string
+    type: typeof REQUEST_ALTER_TODO_FAIL,
+    payload: string
 }
 
 export interface IChangeUpdatedTodoIsDoneAction {
-  type: typeof HANDLE_CHANGE_UPDATED_TODO_IS_DONE,
-  payload: IUpdatedTodoIsDone
+    type: typeof HANDLE_CHANGE_UPDATED_TODO_IS_DONE,
+    payload: IUpdatedTodoIsDone
 }
 
 export interface IChangeUpdatedTodoUrgencyAction {
-  type: typeof HANDLE_CHANGE_UPDATED_TODO_URGENCY,
-  payload: IUpdatedTodoSelect
+    type: typeof HANDLE_CHANGE_UPDATED_TODO_URGENCY,
+    payload: IUpdatedTodoSelect
 }
 
 export interface IChangeUpdatedTodoValueAction {
-  type: typeof HANDLE_CHANGE_UPDATED_TODO_VALUE,
-  payload: IUpdatedTodoValue
+    type: typeof HANDLE_CHANGE_UPDATED_TODO_VALUE,
+    payload: IUpdatedTodoValue
 }
 
 export interface IIsUpdatedAction {
-  type: typeof IS_UPDATED,
-  payload: IUpdatedTodo
+    type: typeof IS_UPDATED,
+    payload: IUpdatedTodo
 }
 
 interface IChangeIsDoneAction {
-  type: typeof IS_DONE,
-  payload: IChangeIsDone
+    type: typeof IS_DONE,
+    payload: IChangeIsDone
 }
 
 interface IChangeUrgencyAction {
-  type: typeof CHANGE_URGENCY,
-  payload: IChangeTodoUrgency
+    type: typeof CHANGE_URGENCY,
+    payload: IChangeTodoUrgency
 }
 
 interface IChangeTodoValueAction {
-  type: typeof UPDATE_VALUE,
-  payload: IChangeTodoValue
+    type: typeof UPDATE_VALUE,
+    payload: IChangeTodoValue
 }
 
 interface IGetTodosActionPending {
-  type: typeof REQUEST_GET_TODOS_PENDING,
+    type: typeof REQUEST_GET_TODOS_PENDING,
 }
 
 interface IGetTodosActionSuccess {
-  type: typeof REQUEST_GET_TODOS_SUCCESS,
-  payload: ITodoListResponse
+    type: typeof REQUEST_GET_TODOS_SUCCESS,
+    payload: ITodoListResponse
 }
 
 interface IGetTodosActionFail {
-  type: typeof REQUEST_GET_TODOS_FAIL,
-  payload: string
+    type: typeof REQUEST_GET_TODOS_FAIL,
+    payload: string
 }
 
 interface IAddTodoActionPending {
-  type: typeof REQUEST_ADD_TODO_PENDING
+    type: typeof REQUEST_ADD_TODO_PENDING
 }
 
 interface IAddTodoActionSuccess {
-  payload: ITodoResponse,
-  type: typeof REQUEST_ADD_TODO_SUCCESS
+    payload: ITodoResponse,
+    type: typeof REQUEST_ADD_TODO_SUCCESS
 }
 
 interface IAddTodoActionFail {
-  type: typeof REQUEST_ADD_TODO_FAIL,
-  payload: string
+    type: typeof REQUEST_ADD_TODO_FAIL,
+    payload: string
 }
 
 export type TodoActionTypes =

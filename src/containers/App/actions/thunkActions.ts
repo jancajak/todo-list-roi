@@ -1,16 +1,32 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 import { AppState } from "../../../store/store";
-import {addTodoAPI, alterTodoAPI, deleteTodoAPI, fetchTodosAPI} from '../api/api';
 import {
-    addTodo, addTodoFail, addTodoPending,
-    alterTodo,
-    alterTodoFail,
-    alterTodoPending, deleteTodo, deleteTodoFail, deleteTodoPending,
+    addTodoAPI,
+    alterTodoAPI,
+    deleteTodoAPI,
+    fetchTodosAPI
+} from '../api/api';
+import {
+    deleteTodo,
+    deleteTodoFail,
+    deleteTodoPending,
+} from './deleteTodoActions';
+import {
     fetchTodos,
     fetchTodosFail,
     fetchTodosPending
-} from './actions';
+} from './getTodosActions'
+import {
+    alterTodoPending,
+    alterTodoFail,
+    alterTodo
+} from './alterTodosActions';
+import {
+    addTodo,
+    addTodoFail,
+    addTodoPending,
+} from './addTodoActions';
 
 export const thunkFetchTodos = (): ThunkAction<void, AppState, null, Action<string>> => async dispatch => {
     try {
