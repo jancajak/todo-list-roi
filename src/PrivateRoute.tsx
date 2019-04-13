@@ -1,23 +1,19 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
 import {
     Redirect,
     Route, RouteComponentProps,
     RouteProps,
 } from 'react-router-dom';
-import {IResponseSession} from './containers/Session/types';
-import {AppState} from './store/store';
 
 interface IPrivateRouteProps extends RouteProps {
-    component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>,
-    session: IResponseSession;
+    component: React.ComponentType<RouteComponentProps<any>> | React.ComponentType<any>
 }
 
 const PrivateRoute: React.FunctionComponent<IPrivateRouteProps> = (props) => {
-    const { component: Component, session, ...rest } = props;
+    const { component: Component, ...rest } = props;
 
     const renderFunction = (routeProps: any) =>
-        session.sessionId ? (
+        sessionStorage.getItem('sessionId') ? (
             <Component {...routeProps} />
         ) : (
             <Redirect
@@ -36,8 +32,4 @@ const PrivateRoute: React.FunctionComponent<IPrivateRouteProps> = (props) => {
     );
 };
 
-const mapStateToProps = (state: AppState) => ({
-   session: state.session
-});
-
-export default connect(mapStateToProps)(PrivateRoute);
+export default PrivateRoute;

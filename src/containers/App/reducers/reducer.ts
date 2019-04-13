@@ -1,11 +1,5 @@
 import {toast} from 'react-toastify';
 import {
-  CHANGE_URGENCY,
-  HANDLE_CHANGE_UPDATED_TODO_IS_DONE,
-  HANDLE_CHANGE_UPDATED_TODO_URGENCY,
-  HANDLE_CHANGE_UPDATED_TODO_VALUE,
-  IS_DONE,
-  IS_UPDATED,
   REQUEST_ADD_TODO_FAIL, REQUEST_ADD_TODO_PENDING, REQUEST_ADD_TODO_SUCCESS,
   REQUEST_ALTER_TODO_FAIL,
   REQUEST_ALTER_TODO_PENDING,
@@ -15,18 +9,10 @@ import {
   REQUEST_GET_TODOS_PENDING,
   REQUEST_GET_TODOS_SUCCESS,
   TodoActionTypes,
-  UPDATE_VALUE
 } from '../types/actionTypes';
 
 import {
   ITodoListResponse,
-  IUpdatedTodo,
-  IUpdatedTodoIsDone,
-  IUpdatedTodoSelect,
-  IUpdatedTodoValue,
-  IChangeIsDone,
-  IChangeTodoUrgency,
-  IChangeTodoValue,
   IRequestTodo,
 } from '../types/types'
 
